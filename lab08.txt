@@ -1,0 +1,51 @@
+CREATE TABLE Employee (
+    Emp_ID INT,
+    Emp_Name VARCHAR(50),
+    Department VARCHAR(50),
+    Salary INT
+);
+
+INSERT INTO Employee VALUES
+(101, 'Shiva', 'IT', 50000),
+(102, 'Ananya', 'HR', 40000),
+(103, 'aruna', 'IT', 60000),
+(104, 'riya', 'HR', 45000),
+(105, 'Aniva', 'Finance', 55000);
+
+-- GROUP BY
+SELECT Department, COUNT(*) AS Number_of_Employees
+FROM Employee
+GROUP BY Department;
+
+-- GROUP BY with SUM
+SELECT Department, SUM(Salary) AS Total_Salary
+FROM Employee
+GROUP BY Department;
+
+-- GROUP BY with AVG
+SELECT Department, AVG(Salary) AS Average_Salary
+FROM Employee
+GROUP BY Department;
+
+-- HAVING
+SELECT Department, AVG(Salary) AS Average_Salary
+FROM Employee
+GROUP BY Department
+HAVING AVG(Salary) > 45000;
+
+-- ORDER BY Ascending
+SELECT *
+FROM Employee
+ORDER BY Salary ASC;
+
+-- ORDER BY Descending
+SELECT *
+FROM Employee
+ORDER BY Salary DESC;
+
+-- GROUP BY + HAVING + ORDER BY
+SELECT Department, AVG(Salary) AS Average_Salary
+FROM Employee
+GROUP BY Department
+HAVING AVG(Salary) > 40000
+ORDER BY Average_Salary DESC;

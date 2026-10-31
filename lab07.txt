@@ -1,0 +1,68 @@
+CREATE TABLE Department (
+    Dept_ID INT,
+    Dept_Name VARCHAR(50)
+);
+
+CREATE TABLE Employee (
+    Emp_ID INT,
+    Emp_Name VARCHAR(50),
+    Dept_ID INT
+);
+
+INSERT INTO Department VALUES
+(1, 'Computer Science'),
+(2, 'Management'),
+(3, 'Finance');
+
+INSERT INTO Employee VALUES
+(101, 'SHIVA', 1),
+(102, 'Ananya', 2),
+(103, 'aruna', 1),
+(104, 'riya', NULL);
+
+-- INNER JOIN
+SELECT Employee.Emp_ID,
+       Employee.Emp_Name,
+       Department.Dept_Name
+FROM Employee
+INNER JOIN Department
+ON Employee.Dept_ID = Department.Dept_ID;
+
+-- LEFT OUTER JOIN
+SELECT Employee.Emp_ID,
+       Employee.Emp_Name,
+       Department.Dept_Name
+FROM Employee
+LEFT JOIN Department
+ON Employee.Dept_ID = Department.Dept_ID;
+
+-- RIGHT OUTER JOIN
+SELECT Employee.Emp_ID,
+       Employee.Emp_Name,
+       Department.Dept_Name
+FROM Employee
+RIGHT JOIN Department
+ON Employee.Dept_ID = Department.Dept_ID;
+
+-- FULL OUTER JOIN
+-- MySQL does not directly support FULL OUTER JOIN.
+SELECT Employee.Emp_ID,
+       Employee.Emp_Name,
+       Department.Dept_Name
+FROM Employee
+LEFT JOIN Department
+ON Employee.Dept_ID = Department.Dept_ID
+
+UNION
+
+SELECT Employee.Emp_ID,
+       Employee.Emp_Name,
+       Department.Dept_Name
+FROM Employee
+RIGHT JOIN Department
+ON Employee.Dept_ID = Department.Dept_ID;
+
+-- NATURAL JOIN
+SELECT *
+FROM Employee
+NATURAL JOIN Department;

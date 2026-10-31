@@ -1,0 +1,62 @@
+DROP PROCEDURE IF EXISTS GetEmployees;
+DROP PROCEDURE IF EXISTS InsertEmployee;
+DROP PROCEDURE IF EXISTS DeleteEmployee;
+DROP TABLE IF EXISTS Employee;
+
+CREATE TABLE Employee (
+    Emp_ID INT PRIMARY KEY,
+    Emp_Name VARCHAR(50),
+    Department VARCHAR(50),
+    Salary INT
+);
+
+INSERT INTO Employee VALUES
+(101, 'aruna', 'IT', 50000),
+(102, 'nanya', 'HR', 40000);
+
+DELIMITER //
+
+-- Basic Procedure
+CREATE PROCEDURE GetEmployees()
+BEGIN
+    SELECT * FROM Employee;
+END //
+
+DELIMITER ;
+
+CALL GetEmployees();
+
+DELIMITER //
+
+CREATE PROCEDURE InsertEmployee(
+    IN p_id INT,
+    IN p_name VARCHAR(50),
+    IN p_dept VARCHAR(50),
+    IN p_salary INT
+)
+BEGIN
+    INSERT INTO Employee
+    VALUES (p_id, p_name, p_dept, p_salary);
+END //
+
+DELIMITER ;
+
+CALL InsertEmployee(103, 'Kiran', 'Finance', 55000);
+
+SELECT * FROM Employee;
+
+DELIMITER //
+
+CREATE PROCEDURE DeleteEmployee(
+    IN p_id INT
+)
+BEGIN
+    DELETE FROM Employee
+    WHERE Emp_ID = p_id;
+END //
+
+DELIMITER ;
+
+CALL DeleteEmployee(103);
+
+SELECT * FROM Employee;
